@@ -49,7 +49,7 @@ def update_contact(id):
     if request.method == 'POST':
         fullname = request.form['fullname']
         phone = request.form['phone']
-        email = request.form['phone']
+        email = request.form['email']
         cur = mysql.connection.cursor()
         cur.execute("""
             UPDATE contacts
