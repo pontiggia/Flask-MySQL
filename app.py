@@ -38,9 +38,9 @@ def add_contact():
 @app.route('/edit/<id>', methods = ['POST', 'GET'])
 def get_contact(id):
     cur = mysql.connection.cursor()
-    cur.execute('SELECT * FROM contacts WHERE id = %s', (id))
+    cur.execute('SELECT * FROM contacts WHERE id = {0}'.format(id))
     data = cur.fetchall()
-    return render_template('edit_contact.html', contacts = data[0])
+    return render_template('edit_contact.html', contact = data[0])
 
 # Editar contacto
 
