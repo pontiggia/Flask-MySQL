@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-# Conexion a MySQL
+# MySQL setup and connection
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'admin'
@@ -20,7 +20,7 @@ def index():
     data = cur.fetchall()
     return render_template('index.html', contacts = data) 
 
-# Agregar contacto
+# Add contact to the db
 
 @app.route('/add_contact', methods=['POST'])
 def add_contact():
@@ -42,7 +42,7 @@ def get_contact(id):
     data = cur.fetchall()
     return render_template('edit_contact.html', contact = data[0])
 
-# Editar contacto
+# Edit contact from the db
 
 @app.route('/update/<id>', methods = ['POST'])
 def update_contact(id):
@@ -62,7 +62,7 @@ def update_contact(id):
         flash('Contacto editado satisfactoriamente')
         return redirect(url_for('index'))
 
-# Eliminar contacto
+# Delete contact from the db
 
 @app.route('/delete/<string:id>', methods = ['POST', 'GET'])
 def delete_contact(id):
